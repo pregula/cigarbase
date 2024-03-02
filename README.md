@@ -1,5 +1,5 @@
 # cigarbase
-CigarBase web application for cigar ratings for Aficionados :)
+**CigarBase** is an application designed for Aficionados - true cigar enthusiasts. Thanks to it, cigar lovers can not only discover new cigars and flavors, but also share their experiences with other enthusiasts by adding their own ratings and reviews. Additionally, the app allows users to build their cigar collection based on reliable community opinions. CigarBase provides comprehensive support in exploring the fascinating world of cigars, enabling users to appreciate the diversity and richness of this unique realm.
 
 # Features:
 ## must have

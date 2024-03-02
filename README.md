@@ -1,4 +1,5 @@
-# cigarbase
+![LogoCB](https://github.com/pregula/cigarbase/assets/34336366/fa39ce95-6e53-4f80-ae61-2d20435fe0b2)
+
 **CigarBase** is an application designed for Aficionados - true cigar enthusiasts. Thanks to it, cigar lovers can not only discover new cigars and flavors, but also share their experiences with other enthusiasts by adding their own ratings and reviews. Additionally, the app allows users to build their cigar collection based on reliable community opinions. CigarBase provides comprehensive support in exploring the fascinating world of cigars, enabling users to appreciate the diversity and richness of this unique realm.
 
 # Features:

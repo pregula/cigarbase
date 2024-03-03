@@ -20,8 +20,13 @@
   - password
 5. Simple administration
   - acceptance of adding a new cigar
+6. Adding teasting tags
+7. Ratings by year
+Save data to database - PostgreSQL
+Backend - .net core
+
 ## nice to have:
-1. Not ugly frontend :smile:
+1. Not ugly frontend - maybe angular? :smile:
 2. Adding photos to cigars
 
 

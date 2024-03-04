@@ -2,7 +2,28 @@
 
 **CigarBase** is an application designed for Aficionados - true cigar enthusiasts. Thanks to it, cigar lovers can not only discover new cigars and flavors, but also share their experiences with other enthusiasts by adding their own ratings and reviews. Additionally, the app allows users to build their cigar collection based on reliable community opinions. CigarBase provides comprehensive support in exploring the fascinating world of cigars, enabling users to appreciate the diversity and richness of this unique realm.
 
-# Features:
+### Key Features and Requirements:
+
+#### Cigar Library Management:
+- Users can add cigars to the library with detailed parameters such as name, size, filler, binder, wrapper, country of origin, strength, and manufacturer.
+- Dynamic sorting and filtering options based on user preferences.
+
+#### User Interaction:
+- Ability for logged-in users to rate cigars on a scale of 0 to 100 points.
+- User account creation with customizable profiles.
+- User-generated content including reviews, comments, and tasting notes.
+
+#### Administration Panel:
+- Streamlined interface for admin to add and manage cigars with moderation capabilities.
+- Automated approval process for new cigar additions.
+
+#### Front-End Development:
+- Basic front-end design and layout to provide an intuitive user experience.
+
+#### Enhanced User Profiles:
+- Gamification elements such as badges, achievements, and leaderboards.
+- Premium membership tiers with exclusive benefits for loyal users.
+
 ### Must Have:
 
 #### Adding Cigar to Cigars Library

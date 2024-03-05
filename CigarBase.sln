@@ -4,6 +4,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E03EC2F0-004
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CigarBase.Api", "CigarBase.Api\CigarBase.Api.csproj", "{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CigarBase.Application", "CigarBase.Application\CigarBase.Application.csproj", "{C6DC7895-0940-4DC1-9222-63FD37FEA321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CigarBase.Core", "CigarBase.Core\CigarBase.Core.csproj", "{DE5ADE72-C309-4F35-9B5E-D4EDD4262F05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CigarBase.Infrastructure", "CigarBase.Infrastructure\CigarBase.Infrastructure.csproj", "{6B7A83BB-67EF-434F-9543-89000FF854C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{349402C8-B4AC-4FF2-BA37-999938FEEE28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CigarBase.Unit.Tests", "CigarBase.Unit.Tests\CigarBase.Unit.Tests.csproj", "{F87FC479-2952-48B2-BE88-ACC4ECB25724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +21,31 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA} = {E03EC2F0-004D-421A-A270-271595EE2CDD}
+		{C6DC7895-0940-4DC1-9222-63FD37FEA321} = {E03EC2F0-004D-421A-A270-271595EE2CDD}
+		{DE5ADE72-C309-4F35-9B5E-D4EDD4262F05} = {E03EC2F0-004D-421A-A270-271595EE2CDD}
+		{6B7A83BB-67EF-434F-9543-89000FF854C9} = {E03EC2F0-004D-421A-A270-271595EE2CDD}
+		{F87FC479-2952-48B2-BE88-ACC4ECB25724} = {349402C8-B4AC-4FF2-BA37-999938FEEE28}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6DC7895-0940-4DC1-9222-63FD37FEA321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6DC7895-0940-4DC1-9222-63FD37FEA321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6DC7895-0940-4DC1-9222-63FD37FEA321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6DC7895-0940-4DC1-9222-63FD37FEA321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5ADE72-C309-4F35-9B5E-D4EDD4262F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5ADE72-C309-4F35-9B5E-D4EDD4262F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5ADE72-C309-4F35-9B5E-D4EDD4262F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5ADE72-C309-4F35-9B5E-D4EDD4262F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7A83BB-67EF-434F-9543-89000FF854C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7A83BB-67EF-434F-9543-89000FF854C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7A83BB-67EF-434F-9543-89000FF854C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7A83BB-67EF-434F-9543-89000FF854C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87FC479-2952-48B2-BE88-ACC4ECB25724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87FC479-2952-48B2-BE88-ACC4ECB25724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87FC479-2952-48B2-BE88-ACC4ECB25724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87FC479-2952-48B2-BE88-ACC4ECB25724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

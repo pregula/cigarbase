@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E03EC2F0-004D-421A-A270-271595EE2CDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CigarBase.Api", "CigarBase.Api\CigarBase.Api.csproj", "{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA} = {E03EC2F0-004D-421A-A270-271595EE2CDD}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D87AFF9-9EFE-49F0-932B-347FFD23A1EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,4 +1,4 @@
-namespace CigarBase.Core.Exceptions;
+namespace CigarBase.Core.Exceptions.Cigar;
 
 public sealed class InvalidCigarDescriptionException : CustomException
 {

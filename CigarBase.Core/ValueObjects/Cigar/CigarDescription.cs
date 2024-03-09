@@ -1,6 +1,6 @@
-using CigarBase.Core.Exceptions;
+using CigarBase.Core.Exceptions.Cigar;
 
-namespace CigarBase.Core.ValueObjects;
+namespace CigarBase.Core.ValueObjects.Cigar;
 
 public sealed record CigarDescription
 {

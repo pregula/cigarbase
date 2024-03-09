@@ -1,4 +1,4 @@
-using CigarBase.Core.ValueObjects;
+using CigarBase.Core.ValueObjects.Cigar;
 
 namespace CigarBase.Core.Entities;
 

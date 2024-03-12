@@ -6,4 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CigarBase.Infrastructure\CigarBase.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

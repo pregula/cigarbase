@@ -1,3 +1,6 @@
+using CigarBase.Application.Abstractions;
+using CigarBase.Application.DTO;
+using CigarBase.Application.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CigarBase.Api.Controllers;
@@ -6,9 +9,15 @@ namespace CigarBase.Api.Controllers;
 [Route("[controller]")]
 public class CigarsController : ControllerBase
 {
+    private IQueryHandler<GetCigars, IEnumerable<CigarDto>> _getCigarsHandler;
+    public CigarsController(IQueryHandler<GetCigars, IEnumerable<CigarDto>> getCigarsHandler)
+    {
+        _getCigarsHandler = getCigarsHandler;
+    }
+    
     [HttpGet]
-    public IActionResult Get()
-        => Ok();
+    public async Task<ActionResult<IEnumerable<CigarDto>>> Get([FromQuery] GetCigars query)
+        => Ok(await _getCigarsHandler.HandleAsync(query));
 
     [HttpPost]
     public IActionResult Post()

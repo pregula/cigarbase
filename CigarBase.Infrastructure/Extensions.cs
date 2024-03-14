@@ -17,6 +17,7 @@ public static class Extensions
     {
         services.AddSingleton<ExceptionMiddleware>();
         services.AddSingleton<ICigarRepository, InMemoryCigarRepository>();
+        services.AddScoped<IQueryHandler<GetCigar, CigarDto>, GetCigarHandler>();
         services.AddScoped<IQueryHandler<GetCigars, IEnumerable<CigarDto>>, GetCigarsHandler>();
         services.AddControllers();
         return services;

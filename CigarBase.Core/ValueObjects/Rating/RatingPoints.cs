@@ -14,4 +14,7 @@ public sealed record RatingPoints
         }
         Value = value;
     }
+
+    public static implicit operator int(RatingPoints ratingPoints) => ratingPoints.Value;
+    public static implicit operator RatingPoints(int value) => new(value);
 }

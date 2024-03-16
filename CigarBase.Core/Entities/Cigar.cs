@@ -23,7 +23,11 @@ public sealed class Cigar
 
     public static Cigar Create(CigarId id, CigarFullName fullName, CigarDescription description, Date createdAt)
         => new(id, fullName, description, createdAt);
-    public void AddRating(Rating rating) => _ratings.Add(rating);
+    public void AddRating(Rating rating)
+    {
+        _ratings.Add(rating);
+    }
+
     public void RemoveRating(RatingId ratingId)
         => _ratings.RemoveWhere(r => r.Id == ratingId);
 }

@@ -9,9 +9,9 @@ namespace CigarBase.Api.Controllers;
 [Route("[controller]")]
 public class CigarsController : ControllerBase
 {
-    private IQueryHandler<GetCigar, CigarDto> _getCigarHandler;
+    private IQueryHandler<GetCigar, CigarDetailsDto> _getCigarHandler;
     private IQueryHandler<GetCigars, IEnumerable<CigarDto>> _getCigarsHandler;
-    public CigarsController(IQueryHandler<GetCigar, CigarDto> getCigarHandler,
+    public CigarsController(IQueryHandler<GetCigar, CigarDetailsDto> getCigarHandler,
         IQueryHandler<GetCigars, IEnumerable<CigarDto>> getCigarsHandler)
     {
         _getCigarHandler = getCigarHandler;
@@ -19,7 +19,7 @@ public class CigarsController : ControllerBase
     }
 
     [HttpGet("{cigarId:guid}")]
-    public async Task<ActionResult<CigarDto>> Get(Guid cigarId)
+    public async Task<ActionResult<CigarDetailsDto>> Get(Guid cigarId)
     {
         var cigar = await _getCigarHandler.HandleAsync(new GetCigar { CigarId = cigarId });
         if (cigar is null)

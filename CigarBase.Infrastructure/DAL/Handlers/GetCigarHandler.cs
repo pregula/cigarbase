@@ -5,7 +5,7 @@ using CigarBase.Core.Repositories;
 
 namespace CigarBase.Infrastructure.DAL.Handlers;
 
-internal sealed class GetCigarHandler : IQueryHandler<GetCigar, CigarDto>
+internal sealed class GetCigarHandler : IQueryHandler<GetCigar, CigarDetailsDto>
 {
     private readonly ICigarRepository _repository;
     public GetCigarHandler(ICigarRepository repository)
@@ -13,8 +13,8 @@ internal sealed class GetCigarHandler : IQueryHandler<GetCigar, CigarDto>
         _repository = repository;
     }
     
-    public async Task<CigarDto> HandleAsync(GetCigar query)
+    public async Task<CigarDetailsDto> HandleAsync(GetCigar query)
     {
-        return (await _repository.GetAsync(query.CigarId)).AsDto();
+        return (await _repository.GetAsync(query.CigarId)).AsDetailsDto();
     }
 }

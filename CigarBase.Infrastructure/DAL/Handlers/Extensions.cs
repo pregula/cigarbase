@@ -11,4 +11,12 @@ internal static class Extensions
             Id = entity.Id.ToString(),
             Name = entity.FullName
         };
+
+    public static CigarDetailsDto AsDetailsDto(this Cigar entity)
+        => new ()
+        {
+            Id = entity.Id.ToString(),
+            Name = entity.FullName,
+            Description = entity.Description
+        };
 }

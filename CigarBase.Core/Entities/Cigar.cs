@@ -1,3 +1,4 @@
+using CigarBase.Core.Exceptions.Cigar;
 using CigarBase.Core.ValueObjects;
 using CigarBase.Core.ValueObjects.Cigar;
 using CigarBase.Core.ValueObjects.Rating;
@@ -25,6 +26,11 @@ public sealed class Cigar
         => new(id, fullName, description, createdAt);
     public void AddRating(Rating rating)
     {
+        var isRatingExist = _ratings.Any(r => r.UserId == rating.UserId);
+        if (isRatingExist)
+        {
+            throw new MultipleRatingSingleCigarBySingleUserException(Id, rating.UserId);
+        }
         _ratings.Add(rating);
     }
 

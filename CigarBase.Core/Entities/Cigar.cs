@@ -45,15 +45,11 @@ public sealed class Cigar
 
     public void AddWrapper(CigarWrapper wrapper)
     {
-        if (_wrappers.Any(w => wrapper.TobaccoId is not null && w.TobaccoId == wrapper.TobaccoId))
+        if (_wrappers.Any(w => w.RegionId == wrapper.RegionId))
         {
-            throw new WrapperIsAlreadyExistException(wrapper.TobaccoId);
+            throw new WrapperWithTheSameRegionIdAlreadyExistException(wrapper.RegionId);
         }
-
-        if (_wrappers.Count(w => w.RegionId == wrapper.RegionId && w.TobaccoId == null) > 1)
-        {
-            throw new WrapperRegionWithoutTobaccoAlreadyExistException(wrapper.RegionId);
-        }
+        
         _wrappers.Add(wrapper);
     }
     
@@ -62,15 +58,11 @@ public sealed class Cigar
     
     public void AddFiller(CigarFiller filler)
     {
-        if (_fillers.Any(w => filler.TobaccoId is not null && w.TobaccoId == filler.TobaccoId))
+        if (_fillers.Any(w => w.RegionId == filler.RegionId))
         {
-            throw new FillerIsAlreadyExistException(filler.TobaccoId);
+            throw new FillerWithTheSameRegionIdAlreadyExistException(filler.RegionId);
         }
-
-        if (_fillers.Count(w => w.RegionId == filler.RegionId && w.TobaccoId == null) > 1)
-        {
-            throw new FillerRegionWithoutTobaccoAlreadyExistException(filler.RegionId);
-        }
+        
         _fillers.Add(filler);
     }
     
@@ -81,7 +73,7 @@ public sealed class Cigar
     {
         if (Binder is not null)
         {
-            throw new BinderIsAlreadyExistException();
+            throw new BinderAlreadyExistException();
         }
 
         Binder = binder;

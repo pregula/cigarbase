@@ -9,14 +9,14 @@ namespace CigarBase.Core.Entities;
 public abstract class CigarTobaccoComponent
 {
     public CigarTobaccoComponentId Id { get; private set; }
-    public TobaccoId? TobaccoId { get; private set; }
+    // after deeper analysis, the tobacco region itself is enough for now
+    // public TobaccoId? TobaccoId { get; private set; }
     public RegionId RegionId { get; private set; }
     public CigarId CigarId { get; private set; }
 
-    public CigarTobaccoComponent(CigarTobaccoComponentId id, TobaccoId tobaccoId, RegionId regionId, CigarId cigarId)
+    public CigarTobaccoComponent(CigarTobaccoComponentId id, RegionId regionId, CigarId cigarId)
     {
         Id = id;
-        TobaccoId = tobaccoId;
         RegionId = regionId;
         CigarId = cigarId;
     }

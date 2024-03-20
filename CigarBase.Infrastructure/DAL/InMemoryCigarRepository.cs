@@ -20,6 +20,9 @@ internal class InMemoryCigarRepository : ICigarRepository
     public Task<Cigar> GetAsync(CigarId id) 
         => Task.FromResult(_cigarList.SingleOrDefault(c => c.Id == id));
 
+    public Task<Cigar> GetByNameAsync(CigarFullName fullName) 
+        => Task.FromResult(_cigarList.SingleOrDefault(c => c.FullName == fullName));
+
     public Task<IEnumerable<Cigar>> SearchAsync() 
         => Task.FromResult(_cigarList.AsEnumerable());
 

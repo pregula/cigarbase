@@ -6,10 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\Handlers\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\CigarBase.Core\CigarBase.Core.csproj" />
     </ItemGroup>
 

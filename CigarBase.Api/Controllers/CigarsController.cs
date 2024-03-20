@@ -1,4 +1,5 @@
 using CigarBase.Application.Abstractions;
+using CigarBase.Application.Commands;
 using CigarBase.Application.DTO;
 using CigarBase.Application.Queries;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,14 @@ namespace CigarBase.Api.Controllers;
 [Route("[controller]")]
 public class CigarsController : ControllerBase
 {
+    private ICommandHandler<AddCigar> _addCigarHandler;
     private IQueryHandler<GetCigar, CigarDetailsDto> _getCigarHandler;
     private IQueryHandler<GetCigars, IEnumerable<CigarDto>> _getCigarsHandler;
-    public CigarsController(IQueryHandler<GetCigar, CigarDetailsDto> getCigarHandler,
+    public CigarsController(ICommandHandler<AddCigar> addCigarHandler,
+        IQueryHandler<GetCigar, CigarDetailsDto> getCigarHandler,
         IQueryHandler<GetCigars, IEnumerable<CigarDto>> getCigarsHandler)
     {
+        _addCigarHandler = addCigarHandler;
         _getCigarHandler = getCigarHandler;
         _getCigarsHandler = getCigarsHandler;
     }
@@ -35,8 +39,12 @@ public class CigarsController : ControllerBase
         => Ok(await _getCigarsHandler.HandleAsync(query));
 
     [HttpPost]
-    public IActionResult Post()
-        => Ok();
+    public async Task<IActionResult> Post(AddCigar command)
+    {
+        command = command with { CigarId = Guid.NewGuid() };
+        await _addCigarHandler.HandleAsync(command);
+        return NoContent();
+    }
 
     [HttpPut("{cigarId:guid}")]
     public IActionResult Put(Guid cigarId)

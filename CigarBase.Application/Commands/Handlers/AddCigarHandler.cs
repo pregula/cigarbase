@@ -10,10 +10,12 @@ namespace CigarBase.Application.Commands.Handlers;
 public class AddCigarHandler : ICommandHandler<AddCigar>
 {
     private readonly ICigarRepository _cigarRepository;
+    private readonly IRegionRepository _regionRepository;
 
-    public AddCigarHandler(ICigarRepository cigarRepository)
+    public AddCigarHandler(ICigarRepository cigarRepository, IRegionRepository regionRepository)
     {
         _cigarRepository = cigarRepository;
+        _regionRepository = regionRepository;
     }
     
     public async Task HandleAsync(AddCigar command)
@@ -21,7 +23,29 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
         var cigarId = new CigarId(command.CigarId);
         var fullName = new CigarFullName(command.FullName);
         var description = new CigarDescription(command.Descritpion);
-        if (command.WrapperIds.Any())
+        List<CigarWrapper> wrappers = new();
+        List<CigarFiller> fillers = new();
+        if (command.WrapperIds is not null)
+        {
+            var tasks = command.WrapperIds.Select(w => _regionRepository.GetByIdAsync(w));
+            var regions = await Task.WhenAll(tasks);
+            var emptyRegion = regions.Where(r => r is null);
+            if (emptyRegion.Any())
+            {
+                // todo
+
+                throw new Exception();
+            }
+
+            wrappers = regions.Select(r => new CigarWrapper(Guid.NewGuid(), r.Id, cigarId)).ToList();
+        }
+        
+        if (command.FillerIds is not null)
+        {
+            // todo
+        }
+        
+        if (command.BinderId != Guid.Empty)
         {
             // todo
         }
@@ -32,6 +56,7 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
         }
 
         var cigar = Cigar.Create(cigarId, fullName, description, Date.Now());
+        wrappers.ForEach(w => cigar.AddWrapper(w));
 
         await _cigarRepository.AddAsync(cigar);
     }

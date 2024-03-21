@@ -10,5 +10,5 @@ public interface ICigarRepository
     Task<IEnumerable<Cigar>> SearchAsync();
     Task AddAsync(Cigar cigar);
     Task UpdateAsync(Cigar cigar);
-    Task Delete(Cigar cigar);
+    Task DeleteAsync(Cigar cigar);
 }

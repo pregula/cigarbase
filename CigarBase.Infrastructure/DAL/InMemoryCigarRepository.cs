@@ -37,7 +37,7 @@ internal class InMemoryCigarRepository : ICigarRepository
         return Task.CompletedTask;
     }
 
-    public Task Delete(Cigar cigar)
+    public Task DeleteAsync(Cigar cigar)
     {
         _cigarList.Remove(cigar);
         return Task.CompletedTask;

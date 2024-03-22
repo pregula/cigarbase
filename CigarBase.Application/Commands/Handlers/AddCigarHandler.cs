@@ -25,16 +25,15 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
         var description = new CigarDescription(command.Descritpion);
         List<CigarWrapper> wrappers = new();
         List<CigarFiller> fillers = new();
+        CigarBinder binder = null;
         if (command.WrapperIds is not null)
         {
             var tasks = command.WrapperIds.Select(w => _regionRepository.GetByIdAsync(w));
             var regions = await Task.WhenAll(tasks);
-            var emptyRegion = regions.Where(r => r is null);
+            var emptyRegion = command.WrapperIds.Where(w => !regions.Select(r => r.Id).ToList().Contains(w)).ToList();
             if (emptyRegion.Any())
             {
-                // todo
-
-                throw new Exception();
+                throw new RegionIsNotExistException(emptyRegion.First());
             }
 
             wrappers = regions.Select(r => new CigarWrapper(Guid.NewGuid(), r.Id, cigarId)).ToList();
@@ -42,12 +41,26 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
         
         if (command.FillerIds is not null)
         {
-            // todo
+            var tasks = command.FillerIds.Select(w => _regionRepository.GetByIdAsync(w));
+            var regions = await Task.WhenAll(tasks);
+            var emptyRegion = command.FillerIds.Where(f => !regions.Select(r => r.Id).ToList().Contains(f)).ToList();
+            if (emptyRegion.Any())
+            {
+                throw new RegionIsNotExistException(emptyRegion.First());
+            }
+
+            fillers = regions.Select(r => new CigarFiller(Guid.NewGuid(), r.Id, cigarId)).ToList();
         }
         
         if (command.BinderId != Guid.Empty)
         {
-            // todo
+            var region = await _regionRepository.GetByIdAsync(command.BinderId);
+            if (region is null)
+            {
+                throw new RegionIsNotExistException(command.BinderId);
+            }
+
+            binder = new(Guid.NewGuid(), region.Id, cigarId);
         }
 
         if (await _cigarRepository.GetByNameAsync(fullName) is not null)
@@ -57,7 +70,8 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
 
         var cigar = Cigar.Create(cigarId, fullName, description, Date.Now());
         wrappers.ForEach(w => cigar.AddWrapper(w));
-
+        fillers.ForEach(f => cigar.AddFiller(f));
+        cigar.AddBinder(binder);
         await _cigarRepository.AddAsync(cigar);
     }
 }

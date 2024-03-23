@@ -1,6 +1,7 @@
 using CigarBase.Core.Entities;
 using CigarBase.Core.Exceptions.Cigar;
 using CigarBase.Core.ValueObjects;
+using CigarBase.Core.ValueObjects.Region;
 using CigarBase.Core.ValueObjects.User;
 using Shouldly;
 
@@ -35,9 +36,11 @@ public class CigarTests
 
     private Cigar _cigar;
     private UserId _userId;
+    private RegionId _regionId;
     public CigarTests()
     {
-        _cigar = Cigar.Create(Guid.NewGuid(), "Cigar name", "Cigar description", Date.Now());
+        _regionId = new(Guid.Parse("00000000-0000-0000-0000-000000000001"));
+        _cigar = Cigar.Create(Guid.NewGuid(), "Cigar name", "Cigar description", _regionId, Date.Now());
         _userId = new(Guid.Parse("00000000-0000-0000-0000-000000000001"));
     }
     #endregion

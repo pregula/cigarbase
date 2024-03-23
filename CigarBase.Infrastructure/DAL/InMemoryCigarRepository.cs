@@ -13,8 +13,8 @@ internal class InMemoryCigarRepository : ICigarRepository
     {
         _cigarList = new()
         {
-            Cigar.Create(Guid.Parse("00000000-0000-0000-0000-000000000001"), "Rocky Patel SIXTY Anniversary Sixty", "Description Rocky Patel SIXTY...", Date.Now()),
-            Cigar.Create(Guid.Parse("00000000-0000-0000-0000-000000000002"), "Horacio Sled Edicion Especial", "Description Horacio Sled...", Date.Now())
+            Cigar.Create(Guid.Parse("00000000-0000-0000-0000-000000000001"), "Rocky Patel SIXTY Anniversary Sixty", "Description Rocky Patel SIXTY...",  Guid.Parse("00000000-0000-0000-0000-000000000001"), Guid.Parse("00000000-0000-0000-0000-000000000001"),Date.Now()),
+            Cigar.Create(Guid.Parse("00000000-0000-0000-0000-000000000002"), "Horacio Sled Edicion Especial", "Description Horacio Sled...", Guid.Parse("00000000-0000-0000-0000-000000000002"),Guid.Parse("00000000-0000-0000-0000-000000000002"), Date.Now())
         };
     }
     public Task<Cigar> GetAsync(CigarId id) 

@@ -2,6 +2,7 @@ using CigarBase.Core.Exceptions.Cigar;
 using CigarBase.Core.ValueObjects;
 using CigarBase.Core.ValueObjects.Cigar;
 using CigarBase.Core.ValueObjects.CigarTobaccoComponent;
+using CigarBase.Core.ValueObjects.Factory;
 using CigarBase.Core.ValueObjects.Rating;
 using CigarBase.Core.ValueObjects.Region;
 
@@ -19,21 +20,24 @@ public sealed class Cigar
     public CigarBinder Binder { get; private set; }
     public RegionId CountryId { get; private set; }
     public Region Country { get; private set; }
+    public FactoryId FactoryId { get; set; }
+    public Factory Factory { get; private set; }
     public Date CreatedAt { get; private set; }
     private readonly HashSet<Rating> _ratings = new();
     public IEnumerable<Rating> Ratings => _ratings;
 
-    private Cigar(CigarId id, CigarFullName fullName, CigarDescription description, RegionId countryId, Date createdAt)
+    private Cigar(CigarId id, CigarFullName fullName, CigarDescription description, RegionId countryId, FactoryId factoryId, Date createdAt)
     {
         Id = id;
         FullName = fullName;
         Description = description;
         CountryId = countryId;
+        FactoryId = factoryId;
         CreatedAt = createdAt;
     }
 
-    public static Cigar Create(CigarId id, CigarFullName fullName, CigarDescription description, RegionId countryId, Date createdAt)
-        => new(id, fullName, description, countryId, createdAt);
+    public static Cigar Create(CigarId id, CigarFullName fullName, CigarDescription description, RegionId countryId, FactoryId factoryId, Date createdAt)
+        => new(id, fullName, description, countryId, factoryId, createdAt);
     public void AddRating(Rating rating)
     {
         var isRatingExist = _ratings.Any(r => r.UserId == rating.UserId);

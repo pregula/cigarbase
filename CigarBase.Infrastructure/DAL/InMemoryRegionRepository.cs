@@ -16,7 +16,9 @@ public class InMemoryRegionRepository : IRegionRepository
             new Region(Guid.Parse("00000000-0000-0000-0000-000000000002"), "Dominican Republic")
         };
     }
-    public Task<Region> GetByIdAsync(RegionId regionId) => Task.FromResult(_regions.SingleOrDefault(r => r.Id == regionId));
+    public Task<Region> GetByIdAsync(RegionId regionId) 
+        => Task.FromResult(_regions.SingleOrDefault(r => r.Id == regionId));
 
-    public Task<IEnumerable<Region>> SearchAsync() => Task.FromResult(_regions.AsEnumerable());
+    public Task<IEnumerable<Region>> SearchAsync() 
+        => Task.FromResult(_regions.AsEnumerable());
 }

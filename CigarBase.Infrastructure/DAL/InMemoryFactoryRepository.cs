@@ -17,13 +17,9 @@ internal class InMemoryFactoryRepository : IFactoryRepository
         };
     }
     
-    public Task<Factory> GetByIdAsync(FactoryId factoryId)
-    {
-        throw new NotImplementedException();
-    }
+    public Task<Factory> GetByIdAsync(FactoryId factoryId) 
+        => Task.FromResult(_factoryList.SingleOrDefault(f => f.Id == factoryId));
 
-    public Task<IEnumerable<Factory>> SearchAsync()
-    {
-        throw new NotImplementedException();
-    }
+    public Task<IEnumerable<Factory>> SearchAsync() 
+        => Task.FromResult(_factoryList.AsEnumerable());
 }

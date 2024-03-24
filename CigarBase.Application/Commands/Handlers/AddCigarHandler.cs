@@ -4,6 +4,7 @@ using CigarBase.Core.Entities;
 using CigarBase.Core.Repositories;
 using CigarBase.Core.ValueObjects;
 using CigarBase.Core.ValueObjects.Cigar;
+using CigarBase.Core.ValueObjects.CigarTobaccoComponent;
 using CigarBase.Core.ValueObjects.Factory;
 using CigarBase.Core.ValueObjects.Region;
 
@@ -50,28 +51,14 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
         
         if (command.WrapperIds is not null)
         {
-            var tasks = command.WrapperIds.Select(w => _regionRepository.GetByIdAsync(w));
-            var regions = await Task.WhenAll(tasks);
-            var emptyRegionIds = command.WrapperIds.Where(w => !regions.Select(r => r.Id).ToList().Contains(w)).ToList();
-            if (emptyRegionIds.Any())
-            {
-                throw new RegionIsNotExistException(emptyRegionIds.First());
-            }
-
-            wrappers = regions.Select(r => new CigarWrapper(Guid.NewGuid(), r.Id, cigarId)).ToList();
+            wrappers = await CheckAndAddCigarComponentListAsync(command.WrapperIds, cigarId,
+                (baseComponentId, baseRegionId, baseCigarId) => new CigarWrapper(baseComponentId, baseRegionId, baseCigarId));
         }
         
         if (command.FillerIds is not null)
         {
-            var tasks = command.FillerIds.Select(w => _regionRepository.GetByIdAsync(w));
-            var regions = await Task.WhenAll(tasks);
-            var emptyRegionIds = command.FillerIds.Where(f => !regions.Select(r => r.Id).ToList().Contains(f)).ToList();
-            if (emptyRegionIds.Any())
-            {
-                throw new RegionIsNotExistException(emptyRegionIds.First());
-            }
-
-            fillers = regions.Select(r => new CigarFiller(Guid.NewGuid(), r.Id, cigarId)).ToList();
+            fillers = await CheckAndAddCigarComponentListAsync(command.FillerIds, cigarId,
+                (baseComponentId, baseRegionId, baseCigarId) => new CigarFiller(baseComponentId, baseRegionId, baseCigarId));
         }
         
         if (command.BinderId != Guid.Empty)
@@ -95,5 +82,18 @@ public class AddCigarHandler : ICommandHandler<AddCigar>
         fillers.ForEach(f => cigar.AddFiller(f));
         cigar.AddBinder(binder);
         await _cigarRepository.AddAsync(cigar);
+    }
+
+    private async Task<List<T>> CheckAndAddCigarComponentListAsync<T>(IEnumerable<Guid> cigarComponentIds, Guid cigarId, Func<CigarTobaccoComponentId, RegionId, CigarId, T> constructor) where T : CigarTobaccoComponent
+    {
+        var tasks = cigarComponentIds.Select(w => _regionRepository.GetByIdAsync(w));
+        var regions = await Task.WhenAll(tasks);
+        var emptyRegionIds = cigarComponentIds.Where(w => !regions.Select(r => r.Id).ToList().Contains(w)).ToList();
+        if (emptyRegionIds.Any())
+        {
+            throw new RegionIsNotExistException(emptyRegionIds.First());
+        }
+
+        return regions.Select(r => constructor(Guid.NewGuid(), r.Id, cigarId)).ToList();
     }
 }

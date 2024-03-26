@@ -1,4 +1,5 @@
 using CigarBase.Core.Entities;
+using CigarBase.Core.Exceptions.Factory;
 using CigarBase.Core.ValueObjects.Factory;
 using Shouldly;
 
@@ -15,6 +16,17 @@ public class FactoryTests
         var factory = Factory.Create(factoryId, name);
 
         factory.ShouldNotBeNull();
+    }
+
+    [Fact]
+    public void given_creating_factory_with_empy_name_should_fail()
+    {
+        var factoryId = FactoryId.Create();
+        
+        var exception = Record.Exception(() => Factory.Create(factoryId, new FactoryName(string.Empty)));
+
+        exception.ShouldNotBeNull();
+        exception.ShouldBeOfType<InvalidFactoryNameException>();
     }
     
     #region Arrange

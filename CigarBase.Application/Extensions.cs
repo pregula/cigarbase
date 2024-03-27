@@ -10,6 +10,7 @@ public static class Extensions
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddScoped<ICommandHandler<AddCigar>, AddCigarHandler>();
+        services.AddScoped<ICommandHandler<DeleteCigar>, DeleteCigarHandler>();
         return services;
     }
 }

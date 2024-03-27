@@ -11,13 +11,16 @@ namespace CigarBase.Api.Controllers;
 public class CigarsController : ControllerBase
 {
     private ICommandHandler<AddCigar> _addCigarHandler;
+    private ICommandHandler<DeleteCigar> _deleteCigarHandler;
     private IQueryHandler<GetCigar, CigarDetailsDto> _getCigarHandler;
     private IQueryHandler<GetCigars, IEnumerable<CigarDto>> _getCigarsHandler;
     public CigarsController(ICommandHandler<AddCigar> addCigarHandler,
+        ICommandHandler<DeleteCigar> deleteCigarHandler,
         IQueryHandler<GetCigar, CigarDetailsDto> getCigarHandler,
         IQueryHandler<GetCigars, IEnumerable<CigarDto>> getCigarsHandler)
     {
         _addCigarHandler = addCigarHandler;
+        _deleteCigarHandler = deleteCigarHandler;
         _getCigarHandler = getCigarHandler;
         _getCigarsHandler = getCigarsHandler;
     }
@@ -51,6 +54,9 @@ public class CigarsController : ControllerBase
         => Ok();
 
     [HttpDelete("{cigarId:guid}")]
-    public IActionResult Delete(Guid cigarId)
-        => Ok();
+    public async Task<IActionResult> Delete(Guid cigarId)
+    {
+        await _deleteCigarHandler.HandleAsync(new DeleteCigar(cigarId));
+        return Ok();
+    }
 }
